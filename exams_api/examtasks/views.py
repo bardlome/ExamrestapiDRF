@@ -8,28 +8,38 @@ from rest_framework.response import Response
 from rest_framework.reverse import reverse
  
 from examtasks.serializers import ExamtaskSerializer
-from exams.serializers import ExamSerializer
+from exams.models import Exam
 
-from rest_framework.views import APIView
-
-
-class ExamtaskList(generics.ListCreateAPIView):
+class ExamtaskListAll(generics.ListAPIView):
     """
-    #API endpoint that allows exams to be viewed or edited. It is possible to post new exam with "post" button on the bottom. By clicking on the URI adress of already exsting exams we proceed to the place when they can be deleted or modified (by sending "post" request again)
-    """
-    queryset = Examtask.objects.all()
-    serializer_class = ExamtaskSerializer
- 
-    def perform_create(self, serializer):
-        serializer.save()#exam=self.request.exam)
-
- 
-class ExamtaskDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    API endpoint that allows deleting or modifing the exam tasks (by sending "PUT" request down there)
+    API endpoint that lists all exam tasks.
     """
     serializer_class = ExamtaskSerializer
- 
+
     def get_queryset(self):
-        return Examtask.objects.all().filter(exam=self.request.exam)
+        return Examtask.objects.all()
 
+
+class ExamtaskAdd(generics.ListCreateAPIView):
+    """
+    API endpoint that lists exam tasks from specific exam, provided by url adress (exam id = pk). Here one can also allows add new examtask to this specified exam.
+    """
+    serializer_class = ExamtaskSerializer
+ 
+    def perform_create(self, serializer, **kwargs):
+        myexam= Exam.objects.get(id=self.kwargs.get('pk', ''))
+        serializer.save(exam=myexam)
+
+    def get_queryset(self, **kwargs):
+        myexam= Exam.objects.get(id=self.kwargs.get('pk', ''))
+        return Examtask.objects.all().filter(exam=myexam)
+
+
+class ExamtaskEdit(generics.RetrieveUpdateDestroyAPIView):
+    """
+    API endpoint that allows deleting or modifing the exam tasks.
+    """
+    serializer_class = ExamtaskSerializer
+ 
+    def get_queryset(self, **kwargs):
+        return Examtask.objects.all().filter(id=self.kwargs.get('pk', ''))

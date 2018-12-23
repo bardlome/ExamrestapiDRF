@@ -2,13 +2,14 @@ from django.db import models
 
 # Create your models here.
 from users.models import User
+import uuid
+  
  
 class Exam(models.Model):
     created = models.DateTimeField(auto_now_add=True)
-    examname = models.CharField(max_length=100, unique=True, blank=False, null=False)
+    name = models.CharField(max_length=100, unique=True, blank=False, null=False)
     user = models.ForeignKey('users.User', related_name='exams', on_delete=models.CASCADE, null=False)
-    examtasks = None# models.AutoField()
-    id= models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID'),
-
+    exam_id = models.UUIDField( default=uuid.uuid4, auto_created=True, editable=False, unique=True )
+  
     class Meta:
         ordering = ('created',)

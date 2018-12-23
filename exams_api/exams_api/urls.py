@@ -28,8 +28,7 @@ from rest_framework.documentation import include_docs_urls
 from exams_api import views
  
 urlpatterns = [
-    url(r'^auth/', include('rest_framework.urls', # ADD THIS URL
-                               namespace='rest_framework')), 
+    url(r'^auth/', include('rest_framework.urls', namespace='rest_framework')), 
     url(r'^admin/', admin.site.urls),
     url(r'^docs/', include_docs_urls(title='Exams API', description='RESTAPI for Exams')),
  
@@ -37,6 +36,7 @@ urlpatterns = [
     url(r'^', include(('users.urls','users'), namespace='users')),
     url(r'^', include(('exams.urls','exams'), namespace='exams')),
     url(r'^', include(('examtasks.urls','examtasks'), namespace='examtasks')),
+    url(r'^', include(('answers.urls','answers'), namespace='answers')),
 ]
 
 

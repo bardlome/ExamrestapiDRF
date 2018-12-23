@@ -7,5 +7,7 @@ def api_root(request, format=None):
     return Response({
        'users': reverse('users:user-list', request=request, format=format),
        'exams': reverse('exams:exams-list', request=request, format=format),
-       #'examtasks': reverse('examtasks:examtasks-list', request=request, format=format),
+       'examtasks': reverse('examtasks:examtasks-list', request=request, format=format),
+       'answers': reverse('answers:answers-list', request=request, format=format),
+        
     })
