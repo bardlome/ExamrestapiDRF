@@ -3,3 +3,5 @@ used commands:
 pip install django
 pip install django-rest-framework
 pip install coreapi
+pip install django-filter
+
