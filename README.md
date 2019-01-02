@@ -54,13 +54,13 @@ bardlome@bardlome-Lenovo-Z580:~/nowy2$ virtualenv --python=python3 envforchallan
 bardlome@bardlome-Lenovo-Z580:~/nowy2$ source envforchallange/bin/activate 
 
 tests.py are included in exams_api/exams, executed with command from terminal (example):
-(envforchallange) bardlome@bardlome-Lenovo-Z580:~/nowy2/envforchallange/exams_api$ python3  manage.py  test  exams
+(envforchallange) bardlome@bardlome-Lenovo-Z580:~/nowy2/envforchallange/exams_api$ python  manage.py  test  exams
 
-to create suuser, execute command from terminal (example):
-(envforchallange) bardlome@bardlome-Lenovo-Z580:~/nowy2/envforchallange/exams_api$ python3  manage.py  runserver
+to create superuser, execute command from terminal (example):
+(envforchallange) bardlome@bardlome-Lenovo-Z580:~/nowy2/envforchallange/exams_api$ python  manage.py  createsuperuser
 
 to start, execute command from terminal (example):
-(envforchallange) bardlome@bardlome-Lenovo-Z580:~/nowy2/envforchallange/exams_api$ python3  manage.py  runserver
+(envforchallange) bardlome@bardlome-Lenovo-Z580:~/nowy2/envforchallange/exams_api$ python  manage.py  runserver
 
 
 feel free to run tests from "exams" directory, and quickly check out how does it work at: http://127.0.0.1:8000/docs/
